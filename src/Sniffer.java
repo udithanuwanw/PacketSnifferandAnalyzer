@@ -288,6 +288,11 @@ public class Sniffer extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 captureState = true;
+                try {
+                    captor = JpcapCaptor.openDevice(inputInterfaces[interfaceIndex], 65536, true, 1000);
+                } catch (IOException ex) {
+                    Logger.getLogger(Sniffer.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new Thread(new Runnable(){
                     int index = 0;
 
